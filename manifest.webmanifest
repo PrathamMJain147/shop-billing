@@ -2,7 +2,7 @@
   "name": "Sree Parshwanatha Paper Mart",
   "short_name": "Paper Mart Bill",
   "description": "Billing for Sree Parshwanatha Paper Mart",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",

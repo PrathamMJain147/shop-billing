@@ -1,16 +1,18 @@
 // Service worker: NETWORK FIRST, cache as fallback.
 // - Online: always gets the latest files (new prices show up straight away).
 // - Offline / no signal: opens from the last saved copy.
-var CACHE = 'spm-billing-v1';
+// Pages are cached at their real addresses as they are visited ("./" = billing page).
+// index.html / cost.html are not pre-cached because Cloudflare Pages redirects them
+// (to "/" and "/cost"), and a redirected copy can't be used to open a page offline.
+var CACHE = 'spm-billing-v3';
 var CORE = [
   './',
-  'index.html',
-  'cost.html',
   'style.css',
   'app.js',
   'cost.js',
   'pwa.js',
   'products.js',
+  'cost-data.js',
   'manifest.webmanifest',
   'vendor/jspdf.umd.min.js',
   'vendor/jspdf.plugin.autotable.min.js',
@@ -48,7 +50,7 @@ self.addEventListener('fetch', function (e) {
       return res;
     }).catch(function () {
       return caches.match(req, { ignoreSearch: true })
-        .then(function (hit) { return hit || (req.mode === 'navigate' ? caches.match('index.html') : null); })
+        .then(function (hit) { return hit || (req.mode === 'navigate' ? caches.match('./') : null); })
         .then(function (res) { return res || Response.error(); });
     })
   );

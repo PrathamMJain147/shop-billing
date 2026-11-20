@@ -161,8 +161,21 @@ input[type="text"]:focus { outline: 2px solid var(--accent); outline-offset: -1p
 }
 
 /* ---------- Cost Price page ---------- */
-.page-cost .wrap { padding-bottom: 16px; }
-#filter { margin: 4px 0 8px; }
+.lock { padding: 16px; }
+.lock label { display: block; font-weight: 600; margin-bottom: 8px; }
+.lock-row { display: flex; gap: 8px; }
+.lock-row input { flex: 1; min-width: 0; }
+input[type="password"] {
+  font: inherit; padding: 8px; border: 1px solid var(--line); border-radius: 6px;
+  background: #fff; color: var(--text); letter-spacing: .15em;
+}
+input[type="password"]:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+.lock-msg { color: var(--danger); font-weight: 600; min-height: 1.4em; margin: 8px 0 0; }
+.btn:disabled { opacity: .6; cursor: default; }
+.btn.small { padding: 6px 12px; font-size: .9rem; }
+.cp-top { display: flex; gap: 8px; align-items: center; margin: 4px 0 8px; }
+.cp-top .btn.ghost { margin-left: 0; }
+#filter { flex: 1; }
 .cp-scroll { overflow-x: auto; }
 .cp { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
 .cp th, .cp td { padding: 9px 8px; border-bottom: 1px solid var(--line); text-align: left; }

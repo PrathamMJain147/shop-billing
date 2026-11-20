@@ -1,6 +1,11 @@
 # Sree Parshwanatha Paper Mart — Billing
 
-One-page billing app. Plain HTML/JS, no build step, works offline.
+One-page billing app. Plain HTML/JS, works offline, hosted on GitHub Pages.
+
+## Changing products / prices
+1. Edit `products-master.js` (name, cp, price, optional `unit: "kg"`).
+2. Run `node build.js`
+3. `git add .` → `git commit -m "Update products"` → `git push`
 
 ## Run locally
 ```
@@ -9,11 +14,14 @@ python -m http.server 8000
 Open http://localhost:8000
 
 ## Files
-- `products.js` — shop name, GST No, and product list (`name`, `cp` cost price, `price` selling price, optional `unit: "kg"` for items sold by weight — price is then per kg). Edit this to add items.
-- `index.html` + `app.js` — billing page (never shows cost price).
-- `cost.html` + `cost.js` — Cost Price page (all items with CP and selling price).
-- `manifest.webmanifest`, `sw.js`, `pwa.js`, `icons/` — make it installable as a phone app (Chrome menu → Install app). `sw.js` loads fresh files when online and falls back to the saved copy when offline.
-- `vendor/` — jsPDF 2.5.1 + jsPDF-AutoTable 3.8.2 (bundled so no internet needed).
+- `products-master.js` — **private** master list with cost prices. Never uploaded (`.gitignore`).
+- `build-password.txt` — **private** password for the Cost Price page. Never uploaded.
+- `build.js` — makes `products.js` (no cost prices) and `cost-data.js` (cost prices encrypted, AES-256-GCM).
+- `products.js`, `cost-data.js` — generated; don't edit by hand.
+- `index.html` + `app.js` — billing page.
+- `cost.html` + `cost.js` — Cost Price page; asks for the password and decrypts in the browser.
+- `manifest.webmanifest`, `sw.js`, `pwa.js`, `icons/` — installable phone app + offline.
+- `vendor/` — jsPDF 2.5.1 + jsPDF-AutoTable 3.8.2.
 
-## Deploy to GitHub Pages
-Push this folder to a repo → Settings → Pages → Deploy from branch `main` / root.
+## Changing the password
+Edit `build-password.txt`, run `node build.js`, push.
