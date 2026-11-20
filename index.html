@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sree Parshwanatha Paper Mart</title>
+  <meta name="theme-color" content="#1f5fbf">
+  <link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <nav class="nav"><a href="index.html" aria-current="page">Billing</a><a href="cost.html">Cost Price</a></nav>
+    <header class="shop">
+      <h1 id="shopName"></h1>
+      <p class="meta">GST No: <span id="shopGst"></span> &middot; <span id="today"></span></p>
+    </header>
+
+    <section class="bill">
+      <label class="cust">
+        <span>Customer name <em>(optional)</em></span>
+        <input type="text" id="customer" autocomplete="off" enterkeyhint="next" maxlength="60">
+      </label>
+      <div class="row head" aria-hidden="true">
+        <span>#</span><span>Item</span><span class="c">Qty</span><span class="r">Price</span><span class="r">Amount</span><span></span>
+      </div>
+      <div id="rows"></div>
+      <div class="total">
+        <span>Total</span>
+        <strong>&#8377; <span id="grandTotal">0</span></strong>
+      </div>
+    </section>
+
+    <section class="actions">
+      <div class="size" role="radiogroup" aria-label="PDF size">
+        <label><input type="radio" name="size" value="4x6" checked><span>4 &times; 6</span></label>
+        <label><input type="radio" name="size" value="a4"><span>A4</span></label>
+      </div>
+      <button id="btnDownload" class="btn primary" type="button">Download PDF</button>
+      <button id="btnShare" class="btn" type="button">Share</button>
+      <button id="btnNew" class="btn ghost" type="button">New Bill</button>
+    </section>
+  </main>
+
+  <ul id="suggest" class="suggest" role="listbox" hidden></ul>
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="vendor/jspdf.umd.min.js"></script>
+  <script src="vendor/jspdf.plugin.autotable.min.js"></script>
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+  <script src="pwa.js"></script>
+</body>
+</html>

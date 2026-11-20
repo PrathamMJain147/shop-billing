@@ -1,0 +1,212 @@
+:root {
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --text: #1c1f24;
+  --muted: #6b7280;
+  --line: #e3e5e9;
+  --accent: #1f5fbf;
+  --accent-text: #ffffff;
+  --danger: #c0392b;
+  --hover: #eef3fb;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+button { touch-action: manipulation; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 16px; }
+
+.nav { display: flex; gap: 4px; justify-content: flex-end; margin-bottom: 6px; }
+.nav a {
+  color: var(--muted); text-decoration: none; font-size: .85rem; font-weight: 600;
+  padding: 6px 10px; border-radius: 6px;
+}
+.nav a:hover { background: var(--hover); color: var(--accent); }
+.nav a[aria-current="page"] { color: var(--accent); background: var(--hover); }
+
+.cust { display: block; padding: 4px 0 10px; border-bottom: 1px solid var(--line); }
+.cust > span { display: block; font-size: .8rem; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+.cust em { font-weight: 400; font-style: normal; }
+
+/* the bottom entry row can't be removed */
+#rows .row:last-child .del { visibility: hidden; }
+
+.shop { text-align: center; margin-bottom: 14px; }
+.shop h1 { margin: 0; font-size: 1.45rem; }
+.shop .meta { margin: 4px 0 0; color: var(--muted); font-size: .9rem; }
+
+.bill {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+/* ---------- item rows (desktop) ---------- */
+.row {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) 172px 92px 92px 34px;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+#rows .row:last-child { border-bottom: 0; }
+.row.head { font-size: .8rem; color: var(--muted); font-weight: 600; text-transform: uppercase; }
+.r { text-align: right; }
+.c { text-align: center; }
+.sn { color: var(--muted); font-size: .85rem; text-align: center; }
+
+.f { display: block; }
+.f > span { display: none; }
+input[type="text"] {
+  width: 100%;
+  font: inherit;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+}
+input[type="text"]:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+.price input { text-align: right; }
+.amt { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.item-wrap { position: relative; min-width: 0; }
+
+/* qty group:  [−][ 2 ][+][pcs]   (kg rows: [ 1.25 ][kg]) */
+.qbox {
+  display: flex; height: 40px;
+  border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #fff;
+}
+.qbox:focus-within { outline: 2px solid var(--accent); outline-offset: -1px; }
+.qbox input[type="text"] {
+  flex: 1; min-width: 0; height: 100%;
+  border: 0; border-radius: 0; padding: 0 4px; text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.qbox input[type="text"]:focus { outline: none; }
+.step {
+  flex: 0 0 34px; border: 0; background: var(--bg); color: var(--text);
+  font: inherit; font-size: 1.25rem; line-height: 1; cursor: pointer; padding: 0;
+}
+.step:active { background: var(--hover); }
+.unit {
+  flex: 0 0 auto; min-width: 40px;
+  font: inherit; font-size: .78rem; font-weight: 600;
+  border: 0; border-left: 1px solid var(--line);
+  background: var(--bg); color: var(--muted); cursor: pointer; padding: 0 6px;
+}
+.unit.kg { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+.row.is-kg .step { display: none; }
+.row.is-kg .qbox input[type="text"] { text-align: right; padding-right: 8px; }
+
+.del {
+  border: 0; background: none; color: var(--muted);
+  font-size: 1.3rem; line-height: 1; cursor: pointer; padding: 6px;
+  border-radius: 6px;
+}
+.del:hover { color: var(--danger); background: #fbeeee; }
+
+.total {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 12px 4px 4px; font-size: 1.15rem;
+  border-top: 1px solid var(--line);
+}
+.total strong { font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+
+.actions {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  margin-top: 14px;
+}
+
+.size { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--card); }
+.size input { position: absolute; opacity: 0; pointer-events: none; }
+.size span { display: block; padding: 10px 12px; cursor: pointer; font-weight: 600; font-size: .95rem; white-space: nowrap; }
+.size input:checked + span { background: var(--accent); color: var(--accent-text); }
+.size input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: -3px; }
+
+.btn {
+  font: inherit; font-weight: 600;
+  padding: 10px 16px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--accent); background: var(--card); color: var(--accent);
+  white-space: nowrap;
+}
+.btn.primary { background: var(--accent); color: var(--accent-text); }
+.btn.ghost { border-color: var(--line); color: var(--muted); margin-left: auto; }
+.btn:active { transform: translateY(1px); }
+
+.suggest {
+  position: absolute; z-index: 20;
+  list-style: none; margin: 0; padding: 4px 0;
+  background: var(--card);
+  border: 1px solid var(--line); border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  max-height: 280px; overflow-y: auto;
+}
+.suggest li {
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 9px 12px; cursor: pointer;
+}
+.suggest li .p { color: var(--muted); white-space: nowrap; }
+.suggest li.active, .suggest li:hover { background: var(--hover); }
+
+.toast {
+  position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%);
+  background: #222; color: #fff; padding: 10px 16px; border-radius: 8px;
+  font-size: .9rem; max-width: calc(100% - 32px); z-index: 30;
+  box-shadow: 0 6px 20px rgba(0,0,0,.2);
+}
+
+/* ---------- Cost Price page ---------- */
+.page-cost .wrap { padding-bottom: 16px; }
+#filter { margin: 4px 0 8px; }
+.cp-scroll { overflow-x: auto; }
+.cp { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.cp th, .cp td { padding: 9px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+.cp th { font-size: .8rem; color: var(--muted); text-transform: uppercase; font-weight: 600; }
+.cp th.r, .cp td.r { text-align: right; white-space: nowrap; }
+.cp .n { color: var(--muted); width: 2.5em; }
+.cp td.loss { color: var(--danger); font-weight: 600; }
+.cp tbody tr:hover { background: var(--hover); }
+.cp-empty { color: var(--muted); text-align: center; padding: 16px 0; margin: 0; }
+.cp-note { color: var(--muted); font-size: .85rem; text-align: center; }
+
+/* ---------- Phone layout ---------- */
+@media (max-width: 560px) {
+  .row.head { display: none; }
+  /* line 1: # | item name | qty | x      line 2: price ......... amount */
+  .row {
+    grid-template-columns: 16px minmax(0, 1fr) 110px 26px;
+    grid-template-areas:
+      "sn item  qty del"
+      ".  price amt amt";
+    gap: 6px 5px;
+    padding: 10px 0;
+  }
+  .sn { grid-area: sn; }
+  .item-wrap { grid-area: item; }
+  .item { padding: 8px 6px; height: 40px; font-size: 15px; }
+  .shop h1 { font-size: 1.2rem; }
+  .shop { margin-bottom: 10px; }
+  .unit { min-width: 30px; padding: 0 3px; font-size: .72rem; }
+  .qty { grid-area: qty; }
+  .price { grid-area: price; }
+  .amt { grid-area: amt; }
+  .del { grid-area: del; padding: 6px 2px; }
+  .step { flex-basis: 24px; font-size: 1.1rem; }
+  .qbox input[type="text"] { padding: 0 2px; }
+
+  .price { display: flex; align-items: center; gap: 6px; }
+  .price > span { display: block; white-space: nowrap; font-size: .75rem; color: var(--muted); }
+  .price input { min-width: 0; flex: 1; height: 36px; padding: 6px 8px; }
+  .amt { display: flex; justify-content: flex-end; align-items: baseline; gap: 6px; padding-right: 2px; }
+  .amt:not(:empty)::before { content: "Amount"; font-size: .75rem; color: var(--muted); font-weight: 400; }
+
+  .btn.ghost { margin-left: 0; }
+  .size { flex: 1 1 100%; }
+  .size label { flex: 1; text-align: center; }
+  .actions .btn { flex: 1 1 auto; }
+}

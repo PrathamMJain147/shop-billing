@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Cost Price</title>
+  <meta name="theme-color" content="#1f5fbf">
+  <link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-cost">
+  <main class="wrap">
+    <nav class="nav"><a href="index.html">Billing</a><a href="cost.html" aria-current="page">Cost Price</a></nav>
+    <header class="shop">
+      <h1>Cost Price</h1>
+      <p class="meta"><span id="shopName"></span> &middot; <span id="count"></span></p>
+    </header>
+
+    <section class="bill">
+      <input type="text" id="filter" placeholder="Search item…" autocomplete="off" aria-label="Search item">
+      <div class="cp-scroll">
+        <table class="cp">
+          <thead>
+            <tr><th class="n">#</th><th>Item</th><th class="r">CP &#8377;</th><th class="r">Selling &#8377;</th></tr>
+          </thead>
+          <tbody id="list"></tbody>
+        </table>
+      </div>
+      <p id="empty" class="cp-empty" hidden>No items match.</p>
+    </section>
+  </main>
+
+  <script src="products.js"></script>
+  <script src="cost.js"></script>
+  <script src="pwa.js"></script>
+</body>
+</html>
